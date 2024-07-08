@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Folder Details</title>
+</head>
+<body>
+    <h1>{{ folder.name }}</h1>
+    
+    {% if parent %}
+        <p>Parent Folder: <a href="{% url 'folder_detail' parent.id %}">{{ parent.name }}</a></p>
+    {% else %}
+        <p>This is a top-level folder with no parent.</p>
+    {% endif %}
+    
+    <h2>Subfolders</h2>
+    <ul>
+        {% for child in children %}
+            <li><a href="{% url 'folder_detail' child.id %}">{{ child.name }}</a></li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'folder_list' %}">Back to Folder List</a>
+</body>
+</html>
